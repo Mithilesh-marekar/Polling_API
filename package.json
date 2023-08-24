@@ -1,9 +1,8 @@
 {
   "name": "polling-system-api",
   "version": "1.0.0",
-  "description": "\"Polling System API project\"",
+  "description": "Polling APi app",
   "main": "index.js",
-  "devDependencies": {},
   "scripts": {
     "start": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"

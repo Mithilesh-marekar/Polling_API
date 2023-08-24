@@ -1,10 +1,16 @@
-// Requiring Express
+const Port=3000
 const express=require('express')
-// express router
-const Router=express.Router()
+const bodyParser=require('body-parser')
+const app=express();
+app.use(bodyParser.urlencoded({extended:true}))
+const db=require('./config/mongoose');
 
-// this is the entry point of all the api named url's
-console.log("i m in")
-Router.use('/api',require('./routes/api/index'));
-// exporting router
-module.exports=Router
+// Routes
+app.use('/',require('./routes/index'));
+   
+app.listen(Port,function(err){
+    if(err){
+        console.log(err);
+    }
+    console.log("server is runing ...",Port);
+})
