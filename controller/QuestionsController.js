@@ -3,17 +3,31 @@ const Option=require('../models/options')
 
 module.exports.create=async function(req,res){
 //  in this the question are created
-    console.log(req.url);
-    console.log(req.body);
-    await Question.create(req.body,function(err,ques){
-            if(err){console.log("error in creating the question schema",err);}
+    // console.log(req.url);
+    // console.log(req.body);
+    // await Question.create(req.body,function(err,ques){
+    //         if(err){console.log("error in creating the question schema",err);}
     
 
-        console.log(ques);
-        res.send(ques);
-})
+    //     console.log(ques);
+    //     res.send(ques);
 
-
+    try {
+        let question = await Question.create(req.body);
+        return res.status(200).json({
+            success: true,
+            body: question,
+            message: "Question created successfully",
+          });
+        
+    } catch (err) {
+        console.log(err)
+        return res.status(400).json({
+            success: false,
+          
+            message: "Problem in creating question",
+          });
+    }
 }
 
 module.exports.showDetails=async function(req,res){
